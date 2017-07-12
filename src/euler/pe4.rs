@@ -1,18 +1,8 @@
+use euler::common;
+
 pub fn execute() {
     print!("Problem 4: ");
     println!("{}", max_palidrome())
-}
-
-fn is_palindrome(number: i64) -> bool{
-    let number_str: String = number.to_string();
-    let mut result = true;
-    for (i, c) in number_str.chars().enumerate(){
-        if c != number_str.chars().nth(number_str.len() - i - 1).unwrap(){
-            result = false;
-            break;
-        }
-    }
-    result
 }
 
 fn max_palidrome() -> i64 {
@@ -25,7 +15,7 @@ fn max_palidrome() -> i64 {
     }
     v.sort_by(|a, b| b.cmp(a));
     for num in v{
-        if is_palindrome(num){
+        if common::is_palindrome(num){
             result = num;
             break;
         }

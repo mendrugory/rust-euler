@@ -1,5 +1,6 @@
 mod euler;
 
+use euler::common;
 use std::process::Command;
 use std::io::{self, BufRead};
 use std::collections::HashMap;
@@ -25,15 +26,15 @@ fn main() {
         }else{
             match functions.get(&input) {
                 Some(f) => f(),
-                None => println!("The function {} has not been implmented yet", input)
+                None => println!("The function {} has not been implemented yet", input)
             }
         }
         println!(" ")
     }
 }
 
-fn get_functions() -> HashMap<i32, fn()>{
-    let mut functions: HashMap<i32, fn()> = HashMap::new();
+fn get_functions() -> HashMap<i64, fn()>{
+    let mut functions: HashMap<i64, fn()> = HashMap::new();
 
     functions.insert(1, euler::pe1::execute);
     functions.insert(2, euler::pe2::execute);
@@ -41,12 +42,13 @@ fn get_functions() -> HashMap<i32, fn()>{
     functions.insert(4, euler::pe4::execute);
     functions.insert(5, euler::pe5::execute);
     functions.insert(6, euler::pe6::execute);
+    functions.insert(7, euler::pe7::execute);
 
     functions
 }
 
 
-fn read_input() -> i32 {
+fn read_input() -> i64 {
     let mut buffer = String::new();
     let stdin = io::stdin();
     stdin.lock().read_line(&mut buffer).expect("Could not read line");
@@ -54,7 +56,7 @@ fn read_input() -> i32 {
         "quit" => 0,
         "none" => 0,
         "exit" => 0,
-        _ => match buffer.trim().parse::<i32>() {
+        _ => match buffer.trim().parse::<i64>() {
                 Ok(n) => n,
                 Err(_err) => -1
             }

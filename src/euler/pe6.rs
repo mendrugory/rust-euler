@@ -6,22 +6,24 @@ pub fn execute() {
 }
 
 fn diff() -> i64 {
-    square_of_sum(1, 101) - sum_of_squares(1, 101)
+    let t1 = square_of_sum(1, 101);
+    let t2 = sum_of_squares(1, 101);
+    t1.join().unwrap() - t2.join().unwrap()
 }
 
 
-fn sum_of_squares(init: i64, end: i64) -> i64 {
+fn sum_of_squares(init: i64, end: i64) -> thread::JoinHandle<i64> {
   let handle = thread::spawn(move || {  
       let mut result = 0;
       for i in init..end {
-        result += (i * i);
+        result += i * i;
       }
       result
   });
-  handle.join().unwrap()
+  handle
 }
 
-fn square_of_sum(init: i64, end: i64) -> i64 {
+fn square_of_sum(init: i64, end: i64) -> thread::JoinHandle<i64> {
   let handle = thread::spawn(move || {  
       let mut result = 0;
       for i in init..end {
@@ -29,5 +31,5 @@ fn square_of_sum(init: i64, end: i64) -> i64 {
       }
       result * result
   });
-  handle.join().unwrap()
+  handle
 }

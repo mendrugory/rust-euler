@@ -49,7 +49,7 @@ fn read_input() -> i32 {
     let mut buffer = String::new();
     let stdin = io::stdin();
     stdin.lock().read_line(&mut buffer).expect("Could not read line");
-    match buffer.as_ref(){
+    match buffer.trim(){
         "quit" => 0,
         "none" => 0,
         "exit" => 0,

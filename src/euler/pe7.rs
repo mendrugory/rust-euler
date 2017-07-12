@@ -2,7 +2,7 @@ use euler::common;
 
 pub fn execute() {
     println!("Problem 7: ");
-    println!("{}", get_the_prime(6));
+    println!("{}", get_the_prime(10001));
 }
 
 fn get_the_prime(n: i64) -> i64 {
@@ -13,8 +13,6 @@ fn get_the_prime(n: i64) -> i64 {
       if common::is_prime(counter){
         prime_n += 1;
       }
-      print!("Counter: {}. ", counter);
-      println!("Prime_N: {}", prime_n)
     }
     counter
 }

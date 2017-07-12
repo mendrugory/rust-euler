@@ -40,6 +40,7 @@ fn get_functions() -> HashMap<i32, fn()>{
     functions.insert(3, euler::pe3::execute);
     functions.insert(4, euler::pe4::execute);
     functions.insert(5, euler::pe5::execute);
+    functions.insert(6, euler::pe6::execute);
 
     functions
 }

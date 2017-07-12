@@ -1,24 +1,33 @@
+use std::thread;
+
 pub fn execute() {
     print!("Problem 6: ");
-    println!("{}", "solution");
-}
-/*
-fn diff() -> i64 {
-    let mut result = 1;
-    let mut v: Vec<i64> = Vec::new();
-    for i in 100..1000{
-        for j in 100..1000{
-            v.push(i * j);
-        }
-    }
-    v.sort_by(|a, b| b.cmp(a));
-    for num in v{
-        if is_palindrome(num){
-            result = num;
-            break;
-        }
-    }
-    result
+    println!("{}", diff());
 }
 
-*/
+fn diff() -> i64 {
+    square_of_sum(1, 101) - sum_of_squares(1, 101)
+}
+
+
+fn sum_of_squares(init: i64, end: i64) -> i64 {
+  let handle = thread::spawn(move || {  
+      let mut result = 0;
+      for i in init..end {
+        result += (i * i);
+      }
+      result
+  });
+  handle.join().unwrap()
+}
+
+fn square_of_sum(init: i64, end: i64) -> i64 {
+  let handle = thread::spawn(move || {  
+      let mut result = 0;
+      for i in init..end {
+        result += i;
+      }
+      result * result
+  });
+  handle.join().unwrap()
+}

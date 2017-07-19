@@ -1,6 +1,5 @@
 mod euler;
 
-use euler::common;
 use std::process::Command;
 use std::io::{self, BufRead};
 use std::collections::HashMap;
@@ -65,8 +64,7 @@ fn read_input() -> i64 {
 }
 
 fn clean_screen(){
-    let cmd = Command::new("clear").spawn().expect("failed to clean the screen"); 
+    let _cmd = Command::new("clear").spawn().expect("failed to clean the screen"); 
     let ten_millis = time::Duration::from_millis(10);
-    let now = time::Instant::now();
     thread::sleep(ten_millis);
 }

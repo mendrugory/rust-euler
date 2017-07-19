@@ -1,5 +1,3 @@
-use euler::common;
-
 pub fn execute() {
     print!("Problem 5: ");
     println!("{}", smallest_positive_number())

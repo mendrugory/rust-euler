@@ -30,8 +30,8 @@ fn str_to_n_array(str: String) -> Vec<i64>{
 
 fn calculate(numbers: &[i64]) -> i64{
   let mut result: i64 = 1;
-  for i in numbers{
-    result *= *i;
+  for &i in numbers{
+    result *= i;
   }
   result
 }

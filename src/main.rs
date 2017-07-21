@@ -12,27 +12,27 @@ fn main() {
     clean_screen();
 
     println!("*** Project Euler ***\n");
-    
-    
+
+
     while executing {
         println!("Which problem would you like to solve? ");
         let input = read_input();
-        if input < 0{
+        if input < 0 {
             println!("Wrong input !!! The input has to be an integer.");
-        }else if input == 0{
+        } else if input == 0 {
             executing = false;
             println!("Bye !!");
-        }else{
+        } else {
             match functions.get(&input) {
                 Some(f) => f(),
-                None => println!("The function {} has not been implemented yet", input)
+                None => println!("The function {} has not been implemented yet", input),
             }
         }
         println!(" ")
     }
 }
 
-fn get_functions() -> HashMap<i64, fn()>{
+fn get_functions() -> HashMap<i64, fn()> {
     let mut functions: HashMap<i64, fn()> = HashMap::new();
 
     functions.insert(1, euler::pe1::execute);
@@ -43,7 +43,7 @@ fn get_functions() -> HashMap<i64, fn()>{
     functions.insert(6, euler::pe6::execute);
     functions.insert(7, euler::pe7::execute);
     functions.insert(8, euler::pe8::execute);
-    
+
     functions
 }
 
@@ -51,20 +51,27 @@ fn get_functions() -> HashMap<i64, fn()>{
 fn read_input() -> i64 {
     let mut buffer = String::new();
     let stdin = io::stdin();
-    stdin.lock().read_line(&mut buffer).expect("Could not read line");
-    match buffer.trim(){
+    stdin
+        .lock()
+        .read_line(&mut buffer)
+        .expect("Could not read line");
+    match buffer.trim() {
         "quit" => 0,
         "none" => 0,
         "exit" => 0,
-        _ => match buffer.trim().parse::<i64>() {
+        _ => {
+            match buffer.trim().parse::<i64>() {
                 Ok(n) => n,
-                Err(_err) => -1
+                Err(_err) => -1,
             }
+        }
     }
 }
 
-fn clean_screen(){
-    let _cmd = Command::new("clear").spawn().expect("failed to clean the screen"); 
+fn clean_screen() {
+    let _cmd = Command::new("clear")
+        .spawn()
+        .expect("failed to clean the screen");
     let ten_millis = time::Duration::from_millis(10);
     thread::sleep(ten_millis);
 }
